@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using umfg.venda.app.Abstracts;
+using umfg.venda.app.Commands;
 using umfg.venda.app.Interfaces;
 using umfg.venda.app.Models;
 
@@ -16,6 +17,7 @@ namespace umfg.venda.app.ViewModels
     {
         private ProdutoModel _produtoSelecionado = new();
         private ObservableCollection<ProdutoModel> _produtos = [];
+        private PedidoModel _pedido = new();
 
         public ProdutoModel ProdutoSelecionado
         {
@@ -28,6 +30,16 @@ namespace umfg.venda.app.ViewModels
             get => _produtos;
             set => SetField(ref _produtos, value);
         }
+
+        public PedidoModel Pedido
+        {
+            get => _pedido;
+            set => SetField(ref _pedido, value);
+        }
+
+        public AdicionarProdutoPedidoCommand Adicionar { get; private set; } = new();
+        public RemoverProdutoPedidoCommand Remover { get; private set; } = new();
+        public ReceberPedidoCommand Receber { get; private set; } = new();
 
         public ListarProdutosViewModel(IObserver observer, UserControl userControl) : base("Produtos")
         {
