@@ -84,7 +84,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTemplateColumn Width="115">  
+                        <DataGridTemplateColumn Width="115">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical">
@@ -107,12 +107,13 @@
                 </DataGrid>
             </StackPanel>
 
-            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="0,20,20,0">
                 <ComboBox 
                     FontSize="24" 
                     FontWeight="SemiBold" 
                     SelectedIndex="0" 
-                    Width="500">
+                    Width="500"
+                    Margin="0,0,0,20">
                     <ComboBoxItem Content="Selecione um Cartão"/>
                     <ComboBoxItem Content="Cartão de Crédito"/>
                     <ComboBoxItem Content="Cartão de Débito"/>
@@ -122,25 +123,39 @@
                 <TextBox 
                     Text="{Binding NumeroCartao, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                     FontSize="24"
-                    FontWeight="SemiBold"/>
+                    FontWeight="SemiBold"
+                    Margin="0,0,0,20"/>
 
                 <TextBlock Text="Código CVV" FontSize="24" FontWeight="SemiBold"/>
                 <TextBox 
                     Text="{Binding CVV, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                     FontSize="24"
-                    FontWeight="SemiBold"/>
+                    FontWeight="SemiBold"
+                    MaxLength="3"
+                    Margin="0,0,0,20"/>
 
-                <TextBlock Text="Data de Validade (MM/yy)" FontSize="24" FontWeight="SemiBold"/>
-                <TextBox 
-                    Text="{Binding DataValidade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                <TextBlock Text="Data de Validade" FontSize="24" FontWeight="SemiBold"/>
+                <DatePicker 
+                    SelectedDate="{Binding DataValidade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                     FontSize="24"
-                    FontWeight="SemiBold"/>
+                    FontWeight="SemiBold"
+                    Margin="0,0,0,20"/>
 
                 <TextBlock Text="Nome no Cartão" FontSize="24" FontWeight="SemiBold"/>
                 <TextBox 
                     Text="{Binding NomeCartao, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                     FontSize="24"
-                    FontWeight="SemiBold"/>
+                    FontWeight="SemiBold"
+                    Margin="0,0,0,40"/>
+
+                <Button Content="Receber via Command" 
+                        Command="{Binding FinalizarCommand}" 
+                        CommandParameter="{Binding}"
+                        FontSize="24" 
+                        FontWeight="Bold" 
+                        Background="#27ae60" 
+                        Foreground="White" 
+                        Padding="10" />
             </StackPanel>
         </Grid>
     </Viewbox>
