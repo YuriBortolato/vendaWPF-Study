@@ -12,7 +12,6 @@ namespace umfg.venda.app.Commands
 {
     internal sealed class ReceberPedidoCommand : AbstractCommand
     {
-        //TODO: habilitar este botao apenas quando um produto for adicionado no carrinho
         public override bool CanExecute(object? parameter)
         {
             return base.CanExecute(parameter);
@@ -22,11 +21,15 @@ namespace umfg.venda.app.Commands
         {
             var vm = parameter as ListarProdutosViewModel;
 
-            //para o usuário final em teoria não importa esse teste
-            //mas é fundamental para garantir a qualidade de código a longo prazo
             if (vm is null)
             {
                 MessageBox.Show("Parâmetro obrigatório não informado! Verifique.");
+                return;
+            }
+
+            if (vm.Pedido.Produtos == null || vm.Pedido.Produtos.Count == 0)
+            {
+                MessageBox.Show("Adicione ao menos um item no pedido antes de prosseguir para o pagamento.", "Carrinho Vazio", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
