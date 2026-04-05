@@ -129,17 +129,28 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBox materialDesign:HintAssist.Hint="Validade (MM/yy)"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 Grid.Column="0"
-                                 Text="{Binding DataValidade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 MaxLength="5" FontSize="20" FontWeight="SemiBold"/>
+                        <Grid Grid.Column="0">
+                            <TextBox materialDesign:HintAssist.Hint="Validade"
+                                     materialDesign:HintAssist.HelperText="MM/yyyy"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                     Text="{Binding DataValidade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                     MaxLength="7" FontSize="20" FontWeight="SemiBold"
+                                     Padding="0,0,30,0" />
+
+                            <materialDesign:PackIcon Kind="Calendar" 
+                                                     Width="25" Height="25" 
+                                                     Foreground="Gray"
+                                                     HorizontalAlignment="Right" 
+                                                     VerticalAlignment="Bottom" 
+                                                     Margin="0,0,5,8"
+                                                     IsHitTestVisible="False"/>
+                        </Grid>
 
                         <TextBox materialDesign:HintAssist.Hint="Código CVV" 
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Grid.Column="2"
                                  Text="{Binding CVV, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 MaxLength="3" FontSize="20" FontWeight="SemiBold"/>
+                                 MaxLength="4" FontSize="20" FontWeight="SemiBold"/>
                     </Grid>
 
                     <TextBox materialDesign:HintAssist.Hint="Nome Impresso no Cartão" 
