@@ -140,7 +140,7 @@
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Grid.Column="2"
                                  Text="{Binding CVV, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                 MaxLength="4" FontSize="20" FontWeight="SemiBold"/>
+                                 MaxLength="3" FontSize="20" FontWeight="SemiBold"/>
                     </Grid>
 
                     <TextBox materialDesign:HintAssist.Hint="Nome Impresso no Cartão" 
