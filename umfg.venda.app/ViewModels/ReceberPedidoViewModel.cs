@@ -14,7 +14,7 @@ namespace umfg.venda.app.ViewModels
         private int _tipoCartaoSelecionado = 0;
         private string _numeroCartao = string.Empty;
         private string _cvv = string.Empty;
-        private DateTime? _dataValidade = null; 
+        private string _dataValidade = string.Empty; 
         private string _nomeCartao = string.Empty;
 
         public int TipoCartaoSelecionado
@@ -35,7 +35,7 @@ namespace umfg.venda.app.ViewModels
             set => SetField(ref _cvv, value);
         }
 
-        public DateTime? DataValidade
+        public string DataValidade
         {
             get => _dataValidade;
             set => SetField(ref _dataValidade, value);

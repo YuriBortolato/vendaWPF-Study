@@ -129,14 +129,11 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <DatePicker Name="dpValidade"
-                                    materialDesign:HintAssist.Hint="Validade"
-                                    materialDesign:HintAssist.HelperText="MM/yyyy"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
-                                    Grid.Column="0"
-                                    SelectedDate="{Binding DataValidade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                                    CalendarOpened="DatePicker_CalendarOpened"
-                                    FontSize="20" FontWeight="SemiBold"/>
+                        <TextBox materialDesign:HintAssist.Hint="Validade (MM/yy)"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 Grid.Column="0"
+                                 Text="{Binding DataValidade, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                 MaxLength="5" FontSize="20" FontWeight="SemiBold"/>
 
                         <TextBox materialDesign:HintAssist.Hint="Código CVV" 
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"

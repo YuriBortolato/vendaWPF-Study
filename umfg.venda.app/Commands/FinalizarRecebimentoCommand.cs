@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -30,17 +31,34 @@ namespace umfg.venda.app.Commands
             if (string.IsNullOrWhiteSpace(viewModel.CVV) || !Regex.IsMatch(viewModel.CVV, @"^\d{3}$"))
                 erros.Add("- O CVV deve conter exatamente 3 dígitos numéricos.");
 
-            if (viewModel.DataValidade == null)
+            if (string.IsNullOrWhiteSpace(viewModel.DataValidade))
             {
                 erros.Add("- A data de validade é obrigatória.");
             }
             else
             {
-                var ultimoDiaMesValidade = new DateTime(viewModel.DataValidade.Value.Year, viewModel.DataValidade.Value.Month, DateTime.DaysInMonth(viewModel.DataValidade.Value.Year, viewModel.DataValidade.Value.Month));
-
-                if (ultimoDiaMesValidade.Date < DateTime.Now.Date)
+                if (!Regex.IsMatch(viewModel.DataValidade, @"^(0[1-9]|1[0-2])\/\d{2,4}$"))
                 {
-                    erros.Add("- A data de validade do cartão deve ser superior à data atual.");
+                    erros.Add("- Digite a validade no formato correto (ex: 12/26).");
+                }
+                else
+                {
+                    DateTime dataValidadeCartao;
+                    string formato = viewModel.DataValidade.Length == 5 ? "MM/yy" : "MM/yyyy";
+
+                    if (DateTime.TryParseExact(viewModel.DataValidade, formato, CultureInfo.InvariantCulture, DateTimeStyles.None, out dataValidadeCartao))
+                    {
+                        var ultimoDiaMesValidade = new DateTime(dataValidadeCartao.Year, dataValidadeCartao.Month, DateTime.DaysInMonth(dataValidadeCartao.Year, dataValidadeCartao.Month));
+
+                        if (ultimoDiaMesValidade.Date < DateTime.Now.Date)
+                        {
+                            erros.Add("- A data de validade do cartão deve ser superior à data atual.");
+                        }
+                    }
+                    else
+                    {
+                        erros.Add("- Data de validade inválida.");
+                    }
                 }
             }
 
